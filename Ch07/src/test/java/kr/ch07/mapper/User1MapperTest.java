@@ -16,7 +16,7 @@ public class User1MapperTest {
 	@Autowired
 	private User1Mapper mapper;
 	
-	
+	@Test
 	public void insertUser1() {
 		
 		User1DTO user1 = User1DTO.builder()

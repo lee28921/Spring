@@ -43,6 +43,7 @@ public class MainControllerTest {
 	}
 	
 	// 테스트 케이스의 실행 순서는 랜덤
+	@Test
 	public void index() throws Exception {
 		
 		mvc
@@ -52,7 +53,7 @@ public class MainControllerTest {
 			.andDo(print());					// 요청 테스트 결과 출력
 	}
 	
-	@Test
+	
 	public void include() throws Exception {
 		
 		mvc
