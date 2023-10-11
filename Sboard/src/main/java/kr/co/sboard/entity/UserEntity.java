@@ -4,7 +4,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import kr.co.sboard.dto.UserDTO;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -29,6 +32,24 @@ public class UserEntity {
     private String addr1;
     private String addr2;
     private String regip;
-    private String regDate;
-    private String LeaveDate;
+    private LocalDateTime regDate;
+    private LocalDateTime LeaveDate;
+
+    public UserDTO toDTO(){
+        return UserDTO.builder()
+                .uid(uid)
+                .pass1(pass)
+                .name(name)
+                .nick(nick)
+                .email(email)
+                .hp(hp)
+                .role(role)
+                .zip(zip)
+                .addr1(addr1)
+                .addr2(addr2)
+                .regip(regip)
+                .regDate(regDate)
+                .LeaveDate(LeaveDate)
+                .build();
+    }
 }
