@@ -1,0 +1,86 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.thymeleaf.org/"
+      layout:decorate="/index.html">
+
+    <div class="sboard-list" layout:fragment="content">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>글쓴이</th>
+                            <th>조회수</th>
+                            <th>등록일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>제목</td>
+                            <td>홍길동</td>
+                            <td>12</td>
+                            <td>2023-10-01</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>제목</td>
+                            <td>홍길동</td>
+                            <td>12</td>
+                            <td>2023-10-01</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>제목</td>
+                            <td>홍길동</td>
+                            <td>12</td>
+                            <td>2023-10-01</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>제목</td>
+                            <td>홍길동</td>
+                            <td>12</td>
+                            <td>2023-10-01</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>제목</td>
+                            <td>홍길동</td>
+                            <td>12</td>
+                            <td>2023-10-01</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+        <div class="text-right">
+            <a th:href="@{/article/register}" class="btn btn-primary">작성</a>
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers text-center" id="dataTables-example_paginate">
+            <ul class="pagination">
+                <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                    <a href="#">Previous</a>
+                </li>
+                <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li>
+                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li>
+                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li>
+                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a>
+                </li>
+                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a>
+                </li>
+                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a>
+                </li>
+                <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next"><a href="#">Next</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</html>

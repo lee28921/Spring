@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.thymeleaf.org/"
+      xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -303,9 +305,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">공지사항</h1>
+                    <h1 class="page-header">공지사항::index</h1>
                 </div>
-                <!-- /.col-lg-12 -->
+
+                <!-- 내용 시작 -->
+                <div class="col-lg-12">
+                    <div layout:fragment="content"></div>
+
+                </div>
+                <!-- 내용 끝 -->
             </div>
             <!-- /.row -->
         </div>

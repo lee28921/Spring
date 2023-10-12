@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import kr.co.sboard.dto.UserDTO;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -32,6 +33,8 @@ public class UserEntity {
     private String addr1;
     private String addr2;
     private String regip;
+    
+    @CreationTimestamp
     private LocalDateTime regDate;
     private LocalDateTime LeaveDate;
 

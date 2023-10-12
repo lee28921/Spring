@@ -33,11 +33,10 @@ public class SecurityConfiguration {
 			.csrf(CsrfConfigurer::disable) // 메서드 참조 연산자로 람다식을 간결하게 표현
 			// 토큰방식으로 로그인처리하기 때문에 폼방식 비활성
 			.formLogin(config -> config.loginPage("/user/login")
-									   .defaultSuccessUrl("/")
-										.failureUrl("/user/login?success=100")
-										.usernameParameter("uid")
-										.passwordParameter("pass")
-			)
+						.defaultSuccessUrl("/",true) // 첫방문도 가능하게 해줌
+						.failureUrl("/user/login?success=100")
+						.usernameParameter("uid")
+						.passwordParameter("pass"))
 			// 로그아웃 설정
 			.logout(config -> config
 					.logoutUrl("/user/logout")
@@ -46,8 +45,8 @@ public class SecurityConfiguration {
 					.logoutSuccessUrl("/user/login?success=200"))
 			// 인가 권한 설정
 			.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-									.requestMatchers("/admin/**").hasAuthority("ADMIN")
-									.requestMatchers("/manager/**").hasAnyAuthority("ADMIN","MANAGER")
+									.requestMatchers("/admin/**").hasRole("ADMIN")
+									.requestMatchers("/article/**").hasAnyRole("ADMIN", "MANAGER", "USER")
 									.requestMatchers("/user/**").permitAll()
 									.requestMatchers("/").authenticated()
 									.requestMatchers("/vendor/**", "/js/**", "/dist/**", "/data/**", "/less/**").permitAll());
