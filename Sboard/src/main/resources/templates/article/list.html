@@ -17,40 +17,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>제목</td>
-                            <td>홍길동</td>
-                            <td>12</td>
-                            <td>2023-10-01</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>제목</td>
-                            <td>홍길동</td>
-                            <td>12</td>
-                            <td>2023-10-01</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>제목</td>
-                            <td>홍길동</td>
-                            <td>12</td>
-                            <td>2023-10-01</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>제목</td>
-                            <td>홍길동</td>
-                            <td>12</td>
-                            <td>2023-10-01</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>제목</td>
-                            <td>홍길동</td>
-                            <td>12</td>
-                            <td>2023-10-01</td>
+                        <tr th:each="article:${pageArticle.content}">
+                            <td>[[${article.no}]]</td>
+                            <td>[[${article.title}]]</td>
+                            <td>[[${article.writer}]]</td>
+                            <td>[[${article.hit}]]</td>
+                            <td>[[${article.rdate}]]</td>
                         </tr>
                         </tbody>
                     </table>
@@ -64,21 +36,18 @@
             <a th:href="@{/article/register}" class="btn btn-primary">작성</a>
         </div>
 
+
+
         <div class="dataTables_paginate paging_simple_numbers text-center" id="dataTables-example_paginate">
             <ul class="pagination">
-                <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-                    <a href="#">Previous</a>
+                <li th:if="${pageArticle.hasPrevious()}" class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                    <a th:href="@{/article/list(cate='tree',pg=1)}">이전</a>
                 </li>
-                <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li>
-                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li>
-                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li>
-                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a>
-                </li>
-                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a>
-                </li>
-                <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a>
-                </li>
-                <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next"><a href="#">Next</a>
+                <th:block th:each="num: ${#numbers.sequence(1, pageArticle.totalPages)}">
+                    <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a th:href="@{/article/list(cate='tree',pg=${num})}">[[${num}]]</a></li>
+                </th:block>
+                <li th:if="${pageArticle.hasNext()}" class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                    <a th:href="@{/article/list(cate='tree',pg=${pageArticle.totalPages})}">다음</a>
                 </li>
             </ul>
         </div>

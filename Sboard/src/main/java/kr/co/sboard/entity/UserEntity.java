@@ -33,7 +33,7 @@ public class UserEntity {
     private String addr1;
     private String addr2;
     private String regip;
-    
+
     @CreationTimestamp
     private LocalDateTime regDate;
     private LocalDateTime LeaveDate;

@@ -41,6 +41,7 @@ public class ArticleEntity {
                 .cate(cate)
                 .title(title)
                 .content(content)
+                .file(file)
                 .hit(hit)
                 .writer(writer)
                 .regip(regip)
