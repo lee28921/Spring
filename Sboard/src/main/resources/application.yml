@@ -16,6 +16,9 @@ server:
     servlet:
         context-path: /
 spring:
+    thymeleaf:
+        prefix: classpath:/templates
+        cache: false
     datasource:
         dbcp2:
             driver-class-name: com.mysql.cj.jdbc.Driver
@@ -42,9 +45,7 @@ spring:
         user:
             name: user
             password: 1234
-    thymeleaf:
-        cache: false
-        prefix: file:src/main/resources/templates/
+
     servlet:
       multipart:
           location: src/main/resources/static/file

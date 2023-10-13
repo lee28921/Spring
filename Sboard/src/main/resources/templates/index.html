@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Sboard</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -276,22 +276,22 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 공지사항</a>
+                        <a th:href="@{/article/list(cate=notice)}"><i class="fa fa-dashboard fa-fw"></i> 공지사항</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 자유게시판</a>
+                        <a th:href="@{/article/list(cate=free)}"><i class="fa fa-bar-chart-o fa-fw"></i> 자유게시판</a>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> 문의하기</a>
+                        <a th:href="@{/article/list(cate=qna)}"><i class="fa fa-wrench fa-fw"></i> 문의하기</a>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> 자주묻는질문</a>
+                        <a th:href="@{/article/list(cate=fnq)}"><i class="fa fa-sitemap fa-fw"></i> 자주묻는질문</a>
                         <!-- /.nav-second-level -->
                     </li>
                     <li class="active">
-                        <a href="#"><i class="fa fa-files-o fa-fw"></i> 이벤트</a>
+                        <a th:href="@{/article/list(cate=event)}"><i class="fa fa-files-o fa-fw"></i> 이벤트</a>
                     </li>
                 </ul>
             </div>

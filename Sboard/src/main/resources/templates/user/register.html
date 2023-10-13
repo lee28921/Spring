@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>회원가입</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -77,7 +77,7 @@
                         <h3 class="panel-title">회원가입</h3>
                     </div>
                     <div class="panel-body">
-                        <form id="form" th:action="@{/user/register}" method="post">
+                        <form id="form" th:action="@{/user/register(cate=)}" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <label class="label-uid control-label">아이디</label>

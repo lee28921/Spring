@@ -2,12 +2,15 @@ package kr.co.sboard.service;
 
 import kr.co.sboard.dto.ArticleDTO;
 import kr.co.sboard.dto.FileDTO;
+import kr.co.sboard.dto.PageRequestDTO;
+import kr.co.sboard.dto.PageResponseDTO;
 import kr.co.sboard.entity.ArticleEntity;
 import kr.co.sboard.entity.FileEntity;
 import kr.co.sboard.repository.ArticleRepository;
 import kr.co.sboard.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -30,6 +33,7 @@ public class ArticleService {
 
     private final ArticleRepository articleRepository;
     private final FileRepository fileRepository;
+    private final ModelMapper modelMapper;
     public void save(ArticleDTO dto){
         
         // 글 등록
@@ -50,12 +54,29 @@ public class ArticleService {
         }
     }
 
-    public Page<ArticleEntity> findByParent(int pg){
+    public PageResponseDTO findByParentAndCate(PageRequestDTO pageRequestDTO){
 
-        Pageable pageable = PageRequest.of(pg-1, 10, Sort.Direction.DESC, "no"); // 0~10까지(Limit),내림차순
-        Page<ArticleEntity> result = articleRepository.findByParent(0,pageable);
+        Pageable pageable = pageRequestDTO.getPageable("no");
 
-        return result;
+        //Pageable pageable = PageRequest.of(pg-1, 10, Sort.Direction.DESC, "no"); // 0~10까지(Limit), 글번호로 내림차순
+        Page<ArticleEntity> result = articleRepository.findByParentAndCate(0, pageRequestDTO.getCate(),pageable);
+        
+        // stream : 파이프라인(통로) 같은 기능, 스트림으로 list를 가공처리
+        // map : 리스트 갯수만큼 for문을 돌린다
+        // map를 사용하여 람다식으로 builder로 entity를 DTO로 변환해줘야 한다
+        List<ArticleDTO> dtoList = result.getContent()
+                .stream()
+                .map(entity -> modelMapper.map(entity,ArticleDTO.class)) // 그러나 modelMapper를 사용하면 압축가능
+                .toList();
+
+        // 갯수
+        int totalElement = (int) result.getTotalElements();
+
+        return PageResponseDTO.builder()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(dtoList)
+                .total(totalElement)
+                .build();
     }
 
     @Value("${spring.servlet.multipart.location}")
